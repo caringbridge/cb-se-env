@@ -1,0 +1,4 @@
+.vagrant/
+.zero-knife.rb
+Berksfile.lock
+chef-repo/
