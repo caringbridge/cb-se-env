@@ -104,13 +104,33 @@ Vagrant.configure('2') do |config|
 
     mongos.vm.network :private_network, ip: '33.33.33.41'
 
-    # Chef run to create things
-    mongos.vm.provision :chef_client do |chef|
-      chef.add_recipe 'role-mongodb-mongos::default'
-      chef.add_recipe 'role-zendserver::default'
-      chef.add_recipe 'role-rabbitmq::default'
-      chef.add_recipe 'role-twemcache::default'
-      chef.add_recipe 'role-sphinx::default'
+    ### Set up a deploy of the platform code base ###
+    puts 'Set up a deploy of the platform code base'
+    local_project_path = '../platform'
+    vagrant_project_path = '/opt/platform'
+
+    # Directories to share between local and vagrant machines
+    # We are serving the app out of /opt/platform because it should be
+    # served by (owned by apache), and the default shared directory /vagrant
+    # is owned by vagrant. /var/www gets built by zend-server and happens too
+    # late in the build flow
+    # NOTE: synced_folder is built in on vagrant (https://docs.vagrantup.com/v2/synced-folders/basic_usage.html)
+    # @todo: Consider moving to /vagrant (and letting vagrant run apache and zend-server)
+    # or find a way to move the app to /var/www
+    # @todo: We could work with the Sys Admins to more closely match production permissions,
+    # but this should be close enough for government work
+    mongos.vm.synced_folder local_project_path, vagrant_project_path, 
+      :owner => 'apache', 
+      :group => 'apache',
+      :mount_options => ["dmode=775,fmode=775"]  
+
+      # Chef run to create things
+      mongos.vm.provision :chef_client do |chef|
+        chef.add_recipe 'role-mongodb-mongos::default'
+        chef.add_recipe 'role-zendserver::default'
+        chef.add_recipe 'role-rabbitmq::default'
+        chef.add_recipe 'role-twemcache::default'
+        chef.add_recipe 'role-sphinx::default'
+      end
     end
   end
-end
