@@ -34,7 +34,7 @@ Vagrant.configure('2') do |config|
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system
-    cs.vm.box_url = 'chef/centos-6.5'
+    cs.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
     #cs.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
 
     cs.vm.network :private_network, ip: '33.33.33.40'
