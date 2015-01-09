@@ -119,10 +119,10 @@ Vagrant.configure('2') do |config|
     # or find a way to move the app to /var/www
     # @todo: We could work with the Sys Admins to more closely match production permissions,
     # but this should be close enough for government work
-    mongos.vm.synced_folder local_project_path, vagrant_project_path, 
-      :owner => 'apache', 
+    mongos.vm.synced_folder local_project_path, vagrant_project_path,
+      :owner => 'apache',
       :group => 'apache',
-      :mount_options => ["dmode=775,fmode=775"]  
+      :mount_options => ["dmode=775,fmode=775"]
 
       # Chef run to create things
       mongos.vm.provision :chef_client do |chef|
@@ -131,6 +131,7 @@ Vagrant.configure('2') do |config|
         chef.add_recipe 'role-rabbitmq::default'
         chef.add_recipe 'role-twemcache::default'
         chef.add_recipe 'role-sphinx::default'
+        chef.add_recipe 'cb-platform::default'
       end
     end
   end
