@@ -34,8 +34,8 @@ Vagrant.configure('2') do |config|
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system
-    cs.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
-    #cs.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
+    #cs.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
+    cs.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
     cs.vm.network :private_network, ip: '33.33.33.40'
 
@@ -60,7 +60,7 @@ Vagrant.configure('2') do |config|
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system
-    shard1.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
+    shard1.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
     shard1.vm.network :private_network, ip: '33.33.33.42'
 
@@ -80,7 +80,7 @@ Vagrant.configure('2') do |config|
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system
-    shard2.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
+    shard2.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
     shard2.vm.network :private_network, ip: '33.33.33.43'
 
@@ -100,14 +100,14 @@ Vagrant.configure('2') do |config|
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system
-    mongos.vm.box_url = 'http://vagrant.caringbridge.org/centos-chef.box'
+    mongos.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
     mongos.vm.network :private_network, ip: '33.33.33.41'
 
     ### Set up a deploy of the platform code base ###
     puts 'Set up a deploy of the platform code base'
     local_project_path = '../platform'
-    vagrant_project_path = '/opt/platform'
+    vagrant_project_path = '/var/www/platform'
 
     # Directories to share between local and vagrant machines
     # We are serving the app out of /opt/platform because it should be
