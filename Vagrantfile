@@ -34,12 +34,12 @@ Vagrant.configure('2') do |config|
 
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system
-    #cs.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
     cs.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
     cs.vm.network :private_network, ip: '33.33.33.40'
 
     # Chef run to create things
+
     cs.vm.provision :chef_client do |chef|
       chef.json = {
         'mongodb' => {
@@ -125,6 +125,10 @@ Vagrant.configure('2') do |config|
       :mount_options => ["dmode=775,fmode=775"]
 
       # Chef run to create things
+       mongos.vm.provision :shell, :inline => <<-EOF
+       echo export APPLICATION_ENV=vagrant-cluster > /etc/profile.d/vagrant.sh
+       EOF
+
       mongos.vm.provision :chef_client do |chef|
         chef.add_recipe 'role-mongodb-mongos::default'
         chef.add_recipe 'role-zendserver::default'
