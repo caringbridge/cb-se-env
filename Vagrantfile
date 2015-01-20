@@ -1,7 +1,4 @@
 Vagrant.configure('2') do |config|
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 1024
-  end
 
   # Prepare berks
   [:up, :provision, :destroy].each do |cmd|
@@ -38,8 +35,14 @@ Vagrant.configure('2') do |config|
 
     cs.vm.network :private_network, ip: '33.33.33.40'
 
-    # Chef run to create things
+    # Customize VM CPU and Memory
+    config.vm.provider "virtualbox" do |v|
+      # v.memory = 1024
+      v.memory = 512
+      v.cpus = 1
+    end
 
+    # Chef run to create things
     cs.vm.provision :chef_client do |chef|
       chef.json = {
         'mongodb' => {
@@ -64,6 +67,12 @@ Vagrant.configure('2') do |config|
 
     shard1.vm.network :private_network, ip: '33.33.33.42'
 
+    # Customize VM CPU and Memory
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 512
+      v.cpus = 1
+    end
+
     # Chef run to create things
     shard1.vm.provision :chef_client do |chef|
       chef.add_recipe 'role-mongodb-shard1::default'
@@ -84,6 +93,12 @@ Vagrant.configure('2') do |config|
 
     shard2.vm.network :private_network, ip: '33.33.33.43'
 
+    # Customize VM CPU and Memory
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 512
+      v.cpus = 1
+    end
+
     # Chef run to create things
     shard2.vm.provision :chef_client do |chef|
       chef.add_recipe 'role-mongodb-shard2::default'
@@ -103,6 +118,12 @@ Vagrant.configure('2') do |config|
     mongos.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
     mongos.vm.network :private_network, ip: '33.33.33.41'
+
+    # Customize VM CPU and Memory
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.cpus = 2
+    end
 
     ### Set up a deploy of the platform code base ###
     puts 'Set up a deploy of the platform code base'
