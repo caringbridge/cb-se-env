@@ -143,7 +143,8 @@ Vagrant.configure('2') do |config|
     mongos.vm.synced_folder local_project_path, vagrant_project_path,
       :owner => 'apache',
       :group => 'apache',
-      :mount_options => ["dmode=775,fmode=775"]
+      #:mount_options => ["dmode=775,fmode=775"]
+      :mount_options => ["dmode=777,fmode=777"]
 
       # Chef run to create things
        mongos.vm.provision :shell, :inline => <<-EOF
