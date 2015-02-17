@@ -150,8 +150,8 @@ Vagrant.configure('2') do |config|
         chef.add_recipe 'role-zendserver::default'
         chef.add_recipe 'role-rabbitmq::default'
         chef.add_recipe 'role-twemcache::default'
-        chef.add_recipe 'role-sphinx::default'
         chef.add_recipe 'cb-platform::default'
+        chef.add_recipe 'role-sphinx::default'
       end
     end
   end
