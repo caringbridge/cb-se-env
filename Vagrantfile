@@ -152,6 +152,7 @@ Vagrant.configure('2') do |config|
        EOF
 
       mongos.vm.provision :chef_client do |chef|
+        chef.add_recipe 'se-hostfile::default'
         chef.add_recipe 'role-mongodb-mongos::default'
         chef.add_recipe 'role-zendserver::default'
         chef.add_recipe 'role-rabbitmq::default'

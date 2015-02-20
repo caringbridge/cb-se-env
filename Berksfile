@@ -10,6 +10,5 @@ cookbook 'role-zendserver', git: 'git@github.com:caringbridge/role-zendserver.gi
 cookbook 'role-rabbitmq', git: 'git@github.com:caringbridge/role-rabbitmq.git'
 cookbook 'role-sphinx', git: 'git@github.com:caringbridge/role-sphinx.git'
 cookbook 'role-twemcache', git: 'git@github.com:caringbridge/role-twemcache.git'
-
-#testing platform
 cookbook 'cb-platform', git: 'git@github.com:caringbridge/cb-platform.git'
+cookbook 'se-hostfile', git: 'git@github.com:caringbridge/se-hostfile.git'
