@@ -117,6 +117,7 @@ Vagrant.configure('2') do |config|
     # doesn't already exist on the user's system
     mongos.vm.box_url = 'http://sun4600.cbeagan.org/centos-chef.box'
 
+    # Set up network configuration
     mongos.vm.network :private_network, ip: '33.33.33.41'
 
     # Customize VM CPU and Memory
@@ -125,31 +126,24 @@ Vagrant.configure('2') do |config|
       v.cpus = 2
     end
 
-    ### Set up a deploy of the platform code base ###
-    puts 'Set up a deploy of the platform code base'
+    # Set up a deploy of the platform code base
+    # @todo: Consider the possibility of this repo and platform being in different parent dirs
     local_project_path = '../platform'
     vagrant_project_path = '/var/www/platform'
 
     # Directories to share between local and vagrant machines
-    # We are serving the app out of /opt/platform because it should be
-    # served by (owned by apache), and the default shared directory /vagrant
-    # is owned by vagrant. /var/www gets built by zend-server and happens too
-    # late in the build flow
     # NOTE: synced_folder is built in on vagrant (https://docs.vagrantup.com/v2/synced-folders/basic_usage.html)
-    # @todo: Consider moving to /vagrant (and letting vagrant run apache and zend-server)
-    # or find a way to move the app to /var/www
     # @todo: We could work with the Sys Admins to more closely match production permissions,
-    # but this should be close enough for government work
+    #        but this should be close enough for government work
     mongos.vm.synced_folder local_project_path, vagrant_project_path,
       :owner => 'apache',
       :group => 'apache',
-      #:mount_options => ["dmode=775,fmode=775"]
       :mount_options => ["dmode=777,fmode=777"]
 
       # Chef run to create things
-       mongos.vm.provision :shell, :inline => <<-EOF
-       echo export APPLICATION_ENV=vagrant-cluster > /etc/profile.d/vagrant.sh
-       EOF
+      mongos.vm.provision :shell, :inline => <<-EOF
+      echo export APPLICATION_ENV=vagrant-cluster > /etc/profile.d/vagrant.sh
+      EOF
 
       mongos.vm.provision :chef_client do |chef|
         chef.add_recipe 'se-hostfile::default'
@@ -157,8 +151,8 @@ Vagrant.configure('2') do |config|
         chef.add_recipe 'role-zendserver::default'
         chef.add_recipe 'role-rabbitmq::default'
         chef.add_recipe 'role-twemcache::default'
-        chef.add_recipe 'role-sphinx::default'
         chef.add_recipe 'cb-platform::default'
+        chef.add_recipe 'role-sphinx::default'
       end
     end
   end
