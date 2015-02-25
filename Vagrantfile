@@ -50,6 +50,7 @@ Vagrant.configure('2') do |config|
         }
       }
 
+      chef.add_recipe 'se-yum::default'
       chef.add_recipe 'role-mongodb-configserver::default'
     end
   end
@@ -75,6 +76,7 @@ Vagrant.configure('2') do |config|
 
     # Chef run to create things
     shard1.vm.provision :chef_client do |chef|
+      chef.add_recipe 'se-yum::default'
       chef.add_recipe 'role-mongodb-shard1::default'
       chef.add_recipe 'role-mongodb-replicaset1::default'
     end
@@ -101,6 +103,7 @@ Vagrant.configure('2') do |config|
 
     # Chef run to create things
     shard2.vm.provision :chef_client do |chef|
+      chef.add_recipe 'se-yum::default'
       chef.add_recipe 'role-mongodb-shard2::default'
       chef.add_recipe 'role-mongodb-replicaset2::default'
     end
@@ -146,6 +149,7 @@ Vagrant.configure('2') do |config|
       EOF
 
       mongos.vm.provision :chef_client do |chef|
+        chef.add_recipe 'se-yum::default'
         chef.add_recipe 'se-hostfile::default'
         chef.add_recipe 'role-mongodb-mongos::default'
         chef.add_recipe 'role-zendserver::default'
