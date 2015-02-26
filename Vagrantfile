@@ -125,8 +125,8 @@ Vagrant.configure('2') do |config|
 
     # Customize VM CPU and Memory
     config.vm.provider "virtualbox" do |v|
-      v.memory = 2048
-      v.cpus = 2
+      v.memory = 1536
+      v.cpus = 1
     end
 
     # Set up a deploy of the platform code base
@@ -147,6 +147,8 @@ Vagrant.configure('2') do |config|
       mongos.vm.provision :shell, :inline => <<-EOF
       echo export APPLICATION_ENV=vagrant-cluster > /etc/profile.d/vagrant.sh
       EOF
+
+      mongos.vm.provision :shell, inline: "if [ -a /etc/init.d/zend-server ]; then /etc/init.d/zend-server restart; fi", run: "always"
 
       mongos.vm.provision :chef_client do |chef|
         chef.add_recipe 'se-yum::default'
