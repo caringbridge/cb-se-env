@@ -45,9 +45,11 @@ any directory which is nice if you are in say platform and you want to halt your
 
 This can then be run as from any directory
 
-`vc up`
-`vc status`
-`vc ssh`
+```
+vc up
+vc status
+vc ssh
+```
 
 There is also this way of managing your cluster with just an alias as described here: https://github.com/lostphilosopher/dot_files/blob/master/caringbridge_mac_bash#L68-115
 
