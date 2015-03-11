@@ -36,6 +36,19 @@ How to Use
 * `vagrant ssh mongos` - Login to mongos instance
 * `vagrant status` - Check status of your environment
 
+Alias
+=====
+There is a shortcut alias for setting up, halting, provisioning, etc you vagrant cluster if you call the vc.sh file.  This file can be called from
+any directory which is nice if you are in say platform and you want to halt your vm. Set the following in your .bashrc or .profile, whichever you use:
+`alias vc="/path/to/your/cb-se-env/vc.sh"`
+
+This can then be run as from any directory
+`vc up`
+`vc status`
+`vc ssh`
+
+There is also this way of managing your cluster with just an alias as described here: https://github.com/lostphilosopher/dot_files/blob/master/caringbridge_mac_bash#L68-115
+
 Notes
 =====
 There is an issue with i18n gem installed with vagrant plugins.  See https://github.com/andrewgross/vagrant-chef-zero/issues/51.  Please be sure to follow instructions @ https://github.com/andrewgross/vagrant-chef-zero/issues/51#issuecomment-57443582 to workaround this issue until PR https://github.com/svenfuchs/i18n/pull/292 is accepted and merged and a new release of i18n provided and gem dependencies updated.
