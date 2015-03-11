@@ -40,9 +40,11 @@ Alias
 =====
 There is a shortcut alias for setting up, halting, provisioning, etc your vagrant cluster if you call the vc.sh file.  This file can be called from
 any directory which is nice if you are in say platform and you want to halt your vm. Set the following in your .bashrc or .profile, whichever you use:
+
 `alias vc="/path/to/your/cb-se-env/vc.sh"`
 
 This can then be run as from any directory
+
 `vc up`
 `vc status`
 `vc ssh`
