@@ -1,0 +1,21 @@
+source 'https://supermarket.getchef.com'
+
+cookbook 'role-mongodb-mongos', git: 'git@github.com:caringbridge/role-mongodb-mongos.git', branch: 'set-mongo-gem-version'
+cookbook 'role-mongodb-configserver', git: 'git@github.com:caringbridge/role-mongodb-configserver.git', branch: 'set-mongo-gem-version'
+cookbook 'role-mongodb-shard1', git: 'git@github.com:caringbridge/role-mongodb-shard1.git', branch: 'set-mongo-gem-version'
+cookbook 'role-mongodb-shard2', git: 'git@github.com:caringbridge/role-mongodb-shard2.git', branch: 'set-mongo-gem-version'
+cookbook 'role-mongodb-replicaset1', git: 'git@github.com:caringbridge/role-mongodb-replicaset1.git', branch: 'set-mongo-gem-version'
+cookbook 'role-mongodb-replicaset2', git: 'git@github.com:caringbridge/role-mongodb-replicaset2.git', branch: 'set-mongo-gem-version'
+cookbook 'role-zendserver', git: 'git@github.com:caringbridge/role-zendserver.git'
+cookbook 'role-rabbitmq', git: 'git@github.com:caringbridge/role-rabbitmq.git'
+cookbook 'role-sphinx', git: 'git@github.com:caringbridge/role-sphinx.git'
+cookbook 'role-twemcache', git: 'git@github.com:caringbridge/role-twemcache.git'
+cookbook 'cb-platform', git: 'git@github.com:caringbridge/cb-platform.git'
+cookbook 'se-hostfile', git: 'git@github.com:caringbridge/se-hostfile.git'
+cookbook 'se-yum', git: 'git@github.com:caringbridge/se-yum.git'
+cookbook 'smf', '= 2.2.1'
+
+# Added for testing
+cookbook 'role-mongodb-users', path: '/Users/svanzee/GitHub/role-mongodb-users'
+cookbook 'role-mongodb-delay', path: '/Users/svanzee/GitHub/role-mongodb-delay'
+cookbook 'mongodb', path: '/Users/svanzee/GitHub/mongodb'
