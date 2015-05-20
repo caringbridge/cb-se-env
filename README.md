@@ -22,18 +22,18 @@ vagrant plugin install vagrant-berkshelf
 
 Resources Needed
 ================
-A total of 2 VMs will be spun up.  Total resources for all 2 VMs:
-* 2 x CPUs
-* 1 GB Memory
+A total of 4 VMs will be spun up.  Total resources for all 4 VMs:
+* 4 x CPUs
+* 3 GB Memory
 * 3.4 GB HDD
-* 4 min 40 sec (Time it roughly takes to spin up everything)
+* 30 min (Time it roughly takes to spin up everything)
 
 How to Use
 ==========
 * `vagrant up` - Bring up the environment
 * `vagrant destroy` - Destroy the environment
 * `vagrant ssh [instance_name]` - Login to an instance
-* `vagrant ssh mongos` - Login to mongos instance
+* `vagrant ssh mongos-zend` - Login to mongos instance
 * `vagrant status` - Check status of your environment
 
 Alias
